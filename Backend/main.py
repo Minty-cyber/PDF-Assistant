@@ -89,7 +89,7 @@ async def upload_files(files: list[UploadFile] = File(...)):
 
     return {"message": "Files processed successfully"}
 
-@app.post("/ask/")
+@app.post("/ask")
 async def ask_question(request: QuestionRequest):
     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
