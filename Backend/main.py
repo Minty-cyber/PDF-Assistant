@@ -93,6 +93,7 @@ async def upload_files(files: list[UploadFile] = File(...)):
 
 @app.post("/ask")
 async def ask_question(request: QuestionRequest):
+    file_processed = True
     if not file_processed:
         raise HTTPException(status_code=400, detail="No file processed. Upload a file first.")
     
