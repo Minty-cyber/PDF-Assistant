@@ -6,10 +6,10 @@ function App() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [uploading, setUploading] = useState(false); // State to manage uploading state
-  const [message, setMessage] = useState(""); // State to manage message display
+  const [message, setMessage] = useState(""); 
 
   const handleFileChange = (e) => {
-    setFiles(Array.from(e.target.files)); // Convert FileList to Array for manipulation
+    setFiles(Array.from(e.target.files)); 
   };
 
   const handleUpload = async () => {
