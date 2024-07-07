@@ -7,6 +7,10 @@ function App() {
   const [files, setFiles] = useState([]);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+
+  const handleFileChange = (e) => {
+    setFiles(e.target.files);
+  };
   
 
   return (
