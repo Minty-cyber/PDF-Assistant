@@ -5,15 +5,15 @@ function App() {
   const [files, setFiles] = useState([]);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
-  const [uploading, setUploading] = useState(false); 
-  const [message, setMessage] = useState(""); 
+  const [uploading, setUploading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleFileChange = (e) => {
-    setFiles(Array.from(e.target.files)); 
+    setFiles(Array.from(e.target.files));
   };
 
   const handleUpload = async () => {
-    setUploading(true); // Set uploading state to true
+    setUploading(true);
     const formData = new FormData();
     for (let i = 0; i < files.length; i++) {
       formData.append("files", files[i]);
@@ -24,21 +24,25 @@ function App() {
           "Content-Type": "multipart/form-data"
         }
       });
-      setMessage("Files uploaded and processed successfully!"); // Set success message
+      setMessage("Files uploaded and processed successfully!");
     } catch (error) {
-      setMessage("Failed to upload files. Please try again."); // Set error message if upload fails
+      setMessage("Failed to upload files. Please try again.");
     } finally {
-      setUploading(false); // Reset uploading state to false
-      dismissMessage(); // Initiate message dismissal after upload completes
+      setUploading(false);
+      dismissMessage();
     }
   };
 
   const handleQuestionSubmit = async () => {
+    if (files.length === 0) {
+      alert("Please upload files before submitting a question.");
+      return;
+    }
+
     const response = await axios.post("http://localhost:8000/ask/", { question });
     setAnswer(response.data.answer);
   };
 
-  
   const dismissMessage = () => {
     setTimeout(() => {
       setMessage("");
@@ -81,11 +85,11 @@ function App() {
         )}
       </aside>
 
-     
+      {/* Main Content */}
       <main className="flex-1 p-4 md:p-8">
         <div className="mb-4">
           <h1 className="mb-6 text-center font-sans font-bold text-3xl">
-            PDF QnA System 
+            PDF QnA System
           </h1>
           <input
             type="text"
@@ -95,15 +99,14 @@ function App() {
             className="w-full border mb-5 border-gray-300 rounded-md px-4 py-2"
           />
           <div className='flex items-center justify-center'>
-          <button
-            onClick={handleQuestionSubmit}
-            className="bg-green-500 items-center flex justify-center hover:bg-green-600
-             text-white px-4 py-2 mt-5 md:mt-0 md:ml-2 rounded-md w-full md:w-auto"
-          >
-            Submit Question
-          </button>
+            <button
+              onClick={handleQuestionSubmit}
+              className={`bg-green-500 items-center flex justify-center hover:bg-green-600 text-white px-4 py-2 mt-5 md:mt-0 md:ml-2 rounded-md w-full md:w-auto ${files.length === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+              disabled={files.length === 0}
+            >
+              Submit Question
+            </button>
           </div>
-          
         </div>
         {answer && (
           <div className="bg-gray-100 p-4 rounded-md">
