@@ -31,4 +31,6 @@ app.add_middleware(
 )
 
 
+class QuestionRequest(BaseModel):
+    question: str
 
