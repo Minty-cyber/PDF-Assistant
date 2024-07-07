@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './index.css'; 
 
 function App() {
   const [files, setFiles] = useState([]);
@@ -30,18 +29,18 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex flex-col md:flex-row">
       {/* Sidebar */}
-      <aside className="w-1/4 bg-gray-800 text-gray-100 p-4">
-        <h1 className="text-2xl font-bold mb-4">PDF QA System</h1>
+      <aside className="w-full md:w-1/4 bg-gray-800 text-gray-100 p-4">
+        <h1 className="text-2xl font-bold mt-4 mb-4">PDF QA System</h1>
         <input type="file" multiple onChange={handleFileChange} className="mb-4" />
-        <button onClick={handleUpload} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">
+        <button onClick={handleUpload} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md w-full">
           Upload Files
         </button>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-8">
+      <main className="flex-1 p-4 md:p-8">
         <div className="mb-4">
           <input
             type="text"
@@ -52,7 +51,7 @@ function App() {
           />
           <button
             onClick={handleQuestionSubmit}
-            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 ml-2 rounded-md"
+            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 mt-2 md:mt-0 md:ml-2 rounded-md w-full md:w-auto"
           >
             Submit Question
           </button>
