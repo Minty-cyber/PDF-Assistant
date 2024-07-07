@@ -72,6 +72,7 @@ def get_conversational_chain():
 
 @app.post("/upload")
 async def upload_files(files: list[UploadFile] = File(...)):
+    global file_processed
     for file in files:
         if not file.filename.endswith('.pdf'):
             raise HTTPException(status_code=400, detail="Only PDF files are allowed")
@@ -86,7 +87,8 @@ async def upload_files(files: list[UploadFile] = File(...)):
 
     for file in pdf_docs:
         os.remove(file)
-
+    
+    file_processed = True
     return {"message": "Files processed successfully"}
 
 @app.post("/ask")
