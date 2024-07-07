@@ -33,10 +33,21 @@ function App() {
   
 
   return (
-    <>
-      
-     
-    </>
+    <div className="App">
+    <h1>PDF QA System</h1>
+    <input type="file" multiple onChange={handleFileChange} />
+    <button onClick={handleUpload}>Upload Files</button>
+    <div>
+      <input
+        type="text"
+        value={question}
+        onChange={(e) => setQuestion(e.target.value)}
+        placeholder="Ask a question"
+      />
+      <button onClick={handleQuestionSubmit}>Submit Question</button>
+    </div>
+    {answer && <div><h2>Answer:</h2><p>{answer}</p></div>}
+  </div>
   )
 }
 
