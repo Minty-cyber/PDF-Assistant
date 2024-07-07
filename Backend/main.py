@@ -1,9 +1,7 @@
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-
 from PyPDF2 import PdfReader
-
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 import google.generativeai as genai
@@ -11,16 +9,13 @@ from langchain_community.vectorstores import FAISS
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
-
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-
 app = FastAPI()
-
 
 app.add_middleware(
     CORSMiddleware,
@@ -30,11 +25,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+file_processed = False  # Global variable to track file processing state
+
 
 class QuestionRequest(BaseModel):
     question: str
-    
-    
+
+
 def get_pdf_text(pdf_docs):
     text = ""
     for pdf in pdf_docs:
@@ -43,6 +40,7 @@ def get_pdf_text(pdf_docs):
             text += page.extract_text()
     return text
 
+
 def get_text_chunks(text):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=1000)
     chunks = text_splitter.split_text(text)
@@ -50,10 +48,11 @@ def get_text_chunks(text):
 
 
 def get_vector_store(text_chunks):
-    embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
+    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     vector_store = FAISS.from_texts(text_chunks, embedding=embeddings)
     vector_store.save_local("faiss_index")
-    
+
+
 def get_conversational_chain():
     prompt_template = """
     Answer the question as detailed as possible from the provided context, make sure to provide all the details, if the answer is not in
@@ -67,7 +66,6 @@ def get_conversational_chain():
     prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
     chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
     return chain
-
 
 
 @app.post("/upload")
@@ -87,16 +85,17 @@ async def upload_files(files: list[UploadFile] = File(...)):
 
     for file in pdf_docs:
         os.remove(file)
-    
-    file_processed = True
+
+    file_processed = True  # Set the global flag to indicate files are processed
     return {"message": "Files processed successfully"}
+
 
 @app.post("/ask")
 async def ask_question(request: QuestionRequest):
-    file_processed = True
+    global file_processed
     if not file_processed:
         raise HTTPException(status_code=400, detail="No file processed. Upload a file first.")
-    
+
     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
     docs = new_db.similarity_search(request.question)
@@ -106,6 +105,3 @@ async def ask_question(request: QuestionRequest):
         return_only_outputs=True
     )
     return {"answer": response["output_text"]}
-
-
-
