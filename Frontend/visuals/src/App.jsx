@@ -84,22 +84,26 @@ function App() {
       {/* Main Content */}
       <main className="flex-1 p-4 md:p-8">
         <div className="mb-4">
-          <h1 className="mb-6 text-center font-sans font-bold text-3xl animate-pulse">
-            PDF QnA System
+          <h1 className="mb-6 text-center font-sans font-bold text-3xl">
+            PDF QnA System 
           </h1>
           <input
             type="text"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             placeholder="Ask a question"
-            className="w-full border border-gray-300 rounded-md px-4 py-2"
+            className="w-full border mb-5 border-gray-300 rounded-md px-4 py-2"
           />
+          <div className='flex items-center justify-center'>
           <button
             onClick={handleQuestionSubmit}
-            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 mt-2 md:mt-0 md:ml-2 rounded-md w-full md:w-auto"
+            className="bg-green-500 items-center flex justify-center hover:bg-green-600
+             text-white px-4 py-2 mt-5 md:mt-0 md:ml-2 rounded-md w-full md:w-auto"
           >
             Submit Question
           </button>
+          </div>
+          
         </div>
         {answer && (
           <div className="bg-gray-100 p-4 rounded-md">
