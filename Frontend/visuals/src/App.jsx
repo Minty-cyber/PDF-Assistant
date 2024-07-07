@@ -5,7 +5,7 @@ function App() {
   const [files, setFiles] = useState([]);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
-  const [uploading, setUploading] = useState(false); // State to manage uploading state
+  const [uploading, setUploading] = useState(false); 
   const [message, setMessage] = useState(""); 
 
   const handleFileChange = (e) => {
