@@ -92,7 +92,11 @@ async def upload_files(files: list[UploadFile] = File(...)):
     return {"message": "Files processed successfully"}
 
 @app.post("/ask")
+
 async def ask_question(request: QuestionRequest):
+    if not file_processed:
+        raise HTTPException(status_code=400, detail="No file processed. Upload a file first.")
+    
     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
     docs = new_db.similarity_search(request.question)
