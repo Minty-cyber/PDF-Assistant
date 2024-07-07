@@ -70,7 +70,7 @@ def get_conversational_chain():
 
 
 
-@app.post("/upload/")
+@app.post("/upload")
 async def upload_files(files: list[UploadFile] = File(...)):
     for file in files:
         if not file.filename.endswith('.pdf'):
