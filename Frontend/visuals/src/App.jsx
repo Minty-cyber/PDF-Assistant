@@ -5,22 +5,32 @@ function App() {
   const [files, setFiles] = useState([]);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [uploading, setUploading] = useState(false); // State to manage uploading state
+  const [message, setMessage] = useState(""); // State to manage message display
 
   const handleFileChange = (e) => {
     setFiles(Array.from(e.target.files)); // Convert FileList to Array for manipulation
   };
 
   const handleUpload = async () => {
+    setUploading(true); // Set uploading state to true
     const formData = new FormData();
     for (let i = 0; i < files.length; i++) {
       formData.append("files", files[i]);
     }
-    await axios.post("http://localhost:8000/upload/", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-    });
-    alert("Files uploaded and processed successfully!");
+    try {
+      await axios.post("http://localhost:8000/upload/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
+      setMessage("Files uploaded and processed successfully!"); // Set success message
+    } catch (error) {
+      setMessage("Failed to upload files. Please try again."); // Set error message if upload fails
+    } finally {
+      setUploading(false); // Reset uploading state to false
+      dismissMessage(); // Initiate message dismissal after upload completes
+    }
   };
 
   const handleQuestionSubmit = async () => {
@@ -28,7 +38,12 @@ function App() {
     setAnswer(response.data.answer);
   };
 
- 
+  // Function to dismiss message after a few seconds
+  const dismissMessage = () => {
+    setTimeout(() => {
+      setMessage("");
+    }, 3000); // 5000 milliseconds = 5 seconds
+  };
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
@@ -50,17 +65,20 @@ function App() {
             {files.map((file, index) => (
               <div key={index} className="flex items-center justify-between bg-gray-700 rounded-md px-3 py-2 mb-2">
                 <span className="text-gray-300">{file.name}</span>
-
               </div>
             ))}
           </div>
         </div>
         <button
           onClick={handleUpload}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md w-full"
+          className={`bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md w-full ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={uploading}
         >
-          Upload Files
+          {uploading ? 'Uploading...' : 'Upload Files'}
         </button>
+        {message && (
+          <div className="mt-2 text-sm text-gray-500">{message}</div>
+        )}
       </aside>
 
       {/* Main Content */}
