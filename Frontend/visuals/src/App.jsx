@@ -84,6 +84,9 @@ function App() {
       {/* Main Content */}
       <main className="flex-1 p-4 md:p-8">
         <div className="mb-4">
+          <h1 className="mb-6 text-center font-sans font-bold text-3xl animate-bounce">
+            PDF QnA System
+          </h1>
           <input
             type="text"
             value={question}
