@@ -7,6 +7,7 @@ function App() {
   const [answer, setAnswer] = useState("");
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
+  const [submittingQuestion, setSubmittingQuestion] = useState(false); // State for submitting question
 
   const handleFileChange = (e) => {
     setFiles(Array.from(e.target.files));
@@ -39,8 +40,17 @@ function App() {
       return;
     }
 
-    const response = await axios.post("http://localhost:8000/ask/", { question });
-    setAnswer(response.data.answer);
+    setSubmittingQuestion(true); // Set state to indicate question submission is in progress
+
+    try {
+      const response = await axios.post("http://localhost:8000/ask/", { question });
+      setAnswer(response.data.answer);
+    } catch (error) {
+      console.error("Error submitting question:", error);
+      // Handle error if needed
+    } finally {
+      setSubmittingQuestion(false); // Reset state after question submission
+    }
   };
 
   const dismissMessage = () => {
@@ -102,9 +112,9 @@ function App() {
             <button
               onClick={handleQuestionSubmit}
               className={`bg-green-500 items-center flex justify-center hover:bg-green-600 text-white px-4 py-2 mt-5 md:mt-0 md:ml-2 rounded-md w-full md:w-auto ${files.length === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-              disabled={files.length === 0}
+              disabled={files.length === 0 || submittingQuestion} // Disable button while submitting
             >
-              Submit Question
+              {submittingQuestion ? 'Processing...' : 'Submit Question'}
             </button>
           </div>
         </div>
