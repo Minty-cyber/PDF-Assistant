@@ -7,7 +7,7 @@ function App() {
   const [answer, setAnswer] = useState("");
 
   const handleFileChange = (e) => {
-    setFiles(e.target.files);
+    setFiles(Array.from(e.target.files)); // Convert FileList to Array for manipulation
   };
 
   const handleUpload = async () => {
@@ -28,14 +28,37 @@ function App() {
     setAnswer(response.data.answer);
   };
 
+ 
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Sidebar */}
       <aside className="w-full md:w-1/4 bg-gray-800 text-gray-100 p-4">
         <h1 className="text-2xl font-bold mt-4 mb-4">PDF QA System</h1>
-        <input type="file" multiple onChange={handleFileChange} 
-        className="mb-4 rounded-sm p-2" />
-        <button onClick={handleUpload} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md w-full">
+        <div className="relative mb-4">
+          <input
+            type="file"
+            multiple
+            onChange={handleFileChange}
+            className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
+          />
+          <div className="flex justify-between items-center bg-slate-700 rounded-sm p-1">
+            <span className="text-gray-300">Choose File</span>
+            <span className="text-gray-300">{files.length} file(s) selected</span>
+          </div>
+          <div className="mt-2">
+            {files.map((file, index) => (
+              <div key={index} className="flex items-center justify-between bg-gray-700 rounded-md px-3 py-2 mb-2">
+                <span className="text-gray-300">{file.name}</span>
+
+              </div>
+            ))}
+          </div>
+        </div>
+        <button
+          onClick={handleUpload}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md w-full"
+        >
           Upload Files
         </button>
       </aside>
