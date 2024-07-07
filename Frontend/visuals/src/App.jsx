@@ -24,6 +24,12 @@ function App() {
     });
     alert("Files uploaded and processed successfully!");
   };
+
+  const handleQuestionSubmit = async () => {
+    const response = await axios.post("http://localhost:8000/ask/", { question });
+    setAnswer(response.data.answer);
+  };
+  
   
 
   return (
