@@ -33,7 +33,8 @@ function App() {
       {/* Sidebar */}
       <aside className="w-full md:w-1/4 bg-gray-800 text-gray-100 p-4">
         <h1 className="text-2xl font-bold mt-4 mb-4">PDF QA System</h1>
-        <input type="file" multiple onChange={handleFileChange} className="mb-4" />
+        <input type="file" multiple onChange={handleFileChange} 
+        className="mb-4 rounded-sm p-2" />
         <button onClick={handleUpload} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md w-full">
           Upload Files
         </button>
