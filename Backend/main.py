@@ -89,6 +89,17 @@ async def upload_files(files: list[UploadFile] = File(...)):
 
     return {"message": "Files processed successfully"}
 
+@app.post("/ask/")
+async def ask_question(request: QuestionRequest):
+    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+    new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
+    docs = new_db.similarity_search(request.question)
+    chain = get_conversational_chain()
+    response = chain(
+        {"input_documents": docs, "question": request.question},
+        return_only_outputs=True
+    )
+    return {"answer": response["output_text"]}
 
 
 
