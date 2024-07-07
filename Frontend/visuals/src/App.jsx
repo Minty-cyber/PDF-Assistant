@@ -38,7 +38,7 @@ function App() {
     setAnswer(response.data.answer);
   };
 
-  // Function to dismiss message after a few seconds
+  
   const dismissMessage = () => {
     setTimeout(() => {
       setMessage("");
