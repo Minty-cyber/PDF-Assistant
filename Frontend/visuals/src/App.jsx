@@ -42,6 +42,7 @@ function App() {
 
     if (!question) {
       setquestionMessage("Please enter a question.");
+      dismissquestionMessage()
       return;
     }
 
