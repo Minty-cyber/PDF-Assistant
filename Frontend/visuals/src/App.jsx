@@ -113,7 +113,7 @@ function App() {
             <button
               onClick={handleQuestionSubmit}
               className={`bg-green-500 items-center flex justify-center hover:bg-green-600 text-white px-4 py-2 mt-5 md:mt-0 md:ml-2 rounded-md w-full md:w-auto ${files.length === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-              disabled={files.length === 0 || submittingQuestion} 
+              disabled={files.length === 0 || submittingQuestion}
             >
               {submittingQuestion ? 'Processing...' : 'Submit Question'}
             </button>
