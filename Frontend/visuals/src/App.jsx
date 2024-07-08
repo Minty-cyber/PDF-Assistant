@@ -9,7 +9,7 @@ function App() {
   const [message, setMessage] = useState("");
   const [submittingQuestion, setSubmittingQuestion] = useState(false); 
   const [uploaded, setUploaded] = useState(false)
-  const[enterMessage, setenterMessage]
+  const[enterMessage, setenterMessage] = useState("")
 
   const handleFileChange = (e) => {
     setFiles(Array.from(e.target.files));
