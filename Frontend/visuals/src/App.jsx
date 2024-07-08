@@ -30,8 +30,7 @@ function App() {
       setUploaded(true);
     } catch (error) {
       setMessage("Failed to upload files. Please try again.");
-      setUploaded(sfla)
-
+      setUploaded(false)
     } finally {
       setUploading(false);
       dismissMessage();
