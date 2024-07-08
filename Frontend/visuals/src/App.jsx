@@ -9,7 +9,7 @@ function App() {
   const [message, setMessage] = useState("");
   const [submittingQuestion, setSubmittingQuestion] = useState(false); 
   const [uploaded, setUploaded] = useState(false)
-  const[enterMessage, setenterMessage] = useState("")
+  const[questionMessage, setquestionMessage] = useState("")
 
   const handleFileChange = (e) => {
     setFiles(Array.from(e.target.files));
@@ -39,6 +39,12 @@ function App() {
   };
 
   const handleQuestionSubmit = async () => {
+
+    if (!question) {
+      setErrorMessage("Please enter a question.");
+      return;
+    }
+
     if (files.length === 0) {
       alert("Please upload files before submitting a question.");
       return;
