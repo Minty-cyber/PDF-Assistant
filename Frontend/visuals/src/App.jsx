@@ -71,7 +71,8 @@ function App() {
             onChange={handleFileChange}
             className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
           />
-          <div className="flex justify-between cursor-pointer items-center bg-slate-700 rounded-lg p-1">
+          <div className="flex justify-between cursor-pointer items-center
+           bg-slate-700 rounded-lg p-3">
             <span className="text-gray-300">Choose File</span>
             <span className="text-gray-300">{files.length} file(s) selected</span>
           </div>
