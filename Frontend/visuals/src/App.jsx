@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import axios from 'axios';
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
   const [submittingQuestion, setSubmittingQuestion] = useState(false); 
+  const [uploaded, setUploaded] = useState(false)
 
   const handleFileChange = (e) => {
     setFiles(Array.from(e.target.files));
