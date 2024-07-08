@@ -68,6 +68,12 @@ function App() {
     }, 3000);
   };
 
+  const dismissquestionMessage = () => {
+    setTimeout(() => {
+      setquestionMessage("");
+    }, 3000);
+  };
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Sidebar */}
