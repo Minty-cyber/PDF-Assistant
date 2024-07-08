@@ -86,7 +86,8 @@ function App() {
         </div>
         <button
           onClick={handleUpload}
-          className={`bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md w-full ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`bg-blue-500 hover:bg-blue-600
+             text-white px-4 py-2 rounded-md w-full ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={uploading}
         >
           {uploading ? 'Uploading...' : 'Upload Files'}
