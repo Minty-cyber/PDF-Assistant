@@ -9,6 +9,7 @@ function App() {
   const [message, setMessage] = useState("");
   const [submittingQuestion, setSubmittingQuestion] = useState(false); 
   const [uploaded, setUploaded] = useState(false)
+  const[enterMessage, setenterMessage]
 
   const handleFileChange = (e) => {
     setFiles(Array.from(e.target.files));
@@ -90,7 +91,7 @@ function App() {
         <button
           onClick={handleUpload}
           className={`bg-blue-500 hover:bg-blue-600
-             text-white px-4 py-2 rounded-md w-full ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
+             text-white px-4 py-2 rounded-md w-full ${uploading || files.length === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={uploading || files.length === 0}
         >
           {uploading ? 'Uploading...' : 'Upload Files'}
@@ -112,11 +113,12 @@ function App() {
             onChange={(e) => setQuestion(e.target.value)}
             placeholder="Ask a question"
             className="w-full border mb-5 border-gray-300 rounded-md px-4 py-2"
+            required
           />
           <div className='flex items-center justify-center'>
             <button
               onClick={handleQuestionSubmit}
-              className={`bg-green-500 items-center flex justify-center hover:bg-green-600 text-white px-4 py-2 mt-5 md:mt-0 md:ml-2 rounded-md w-full md:w-auto ${files.length === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`bg-green-500 items-center flex justify-center hover:bg-green-600 text-white px-4 py-2 mt-5 md:mt-0 md:ml-2 rounded-md w-full md:w-auto ${files.length === 0 || !uploaded ? 'opacity-50 cursor-not-allowed' : ''}`}
               disabled={!uploaded || submittingQuestion}
             >
               {submittingQuestion ? 'Processing...' : 'Submit Question'}
