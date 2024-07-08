@@ -80,6 +80,7 @@ function App() {
             onChange={handleFileChange}
             className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
           />
+         
           <div className="flex justify-between cursor-pointer items-center
            bg-slate-700 rounded-lg p-3">
             <span className="text-gray-300">Choose File</span>
@@ -121,6 +122,9 @@ function App() {
             className="w-full border mb-5 border-gray-300 rounded-md px-4 py-2"
             required
           />
+           {questionMessage && (
+            <div className="text-red-500 mb-4">{questionMessage}</div>
+          )}
           <div className='flex items-center justify-center'>
             <button
               onClick={handleQuestionSubmit}
