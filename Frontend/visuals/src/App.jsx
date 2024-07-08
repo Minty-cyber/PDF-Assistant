@@ -48,7 +48,7 @@ function App() {
     } catch (error) {
       setMessage("Failed to upload files. Please try again.");
     } finally {
-      setSubmittingQuestion(false); // Reset state after question submission
+      setSubmittingQuestion(false); 
     }
   };
 
