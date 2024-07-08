@@ -72,6 +72,9 @@ function App() {
             className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
           />
           <div className="flex justify-between items-center bg-slate-700 rounded-sm p-1">
+            <div>
+              
+            </div>
             <span className="text-gray-300">Choose File</span>
             <span className="text-gray-300">{files.length} file(s) selected</span>
           </div>
