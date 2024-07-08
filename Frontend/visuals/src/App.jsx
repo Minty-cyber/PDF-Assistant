@@ -77,7 +77,8 @@ function App() {
           </div>
           <div className="mt-2">
             {files.map((file, index) => (
-              <div key={index} className="flex items-center justify-between bg-gray-700 rounded-md px-3 py-2 mb-2">
+              <div key={index} className="flex items-center justify-between
+               bg-gray-700 rounded-md px-3 py-2 mb-2">
                 <span className="text-gray-300">{file.name}</span>
               </div>
             ))}
