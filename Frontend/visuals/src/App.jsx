@@ -41,7 +41,7 @@ function App() {
   const handleQuestionSubmit = async () => {
 
     if (!question) {
-      setErrorMessage("Please enter a question.");
+      setquestionMessage("Please enter a question.");
       return;
     }
 
