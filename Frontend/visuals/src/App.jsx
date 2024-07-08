@@ -91,7 +91,7 @@ function App() {
           onClick={handleUpload}
           className={`bg-blue-500 hover:bg-blue-600
              text-white px-4 py-2 rounded-md w-full ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
-          disabled={files.length === 0 || uploading}
+          disabled={uploading || files.length === 0}
         >
           {uploading ? 'Uploading...' : 'Upload Files'}
         </button>
