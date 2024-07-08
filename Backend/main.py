@@ -105,3 +105,4 @@ async def ask_question(request: QuestionRequest):
         return_only_outputs=True
     )
     return {"answer": response["output_text"]}
+
