@@ -40,7 +40,7 @@ function App() {
       return;
     }
 
-    setSubmittingQuestion(true); // Set state to indicate question submission is in progress
+    setSubmittingQuestion(true); 
 
     try {
       const response = await axios.post("http://localhost:8000/ask/", { question });
