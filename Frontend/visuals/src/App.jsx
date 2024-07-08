@@ -46,8 +46,7 @@ function App() {
       const response = await axios.post("http://localhost:8000/ask/", { question });
       setAnswer(response.data.answer);
     } catch (error) {
-      console.error("Error submitting question:", error);
-      // Handle error if needed
+      setMessage("Failed to upload files. Please try again.");
     } finally {
       setSubmittingQuestion(false); // Reset state after question submission
     }
