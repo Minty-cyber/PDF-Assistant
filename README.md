@@ -1,6 +1,10 @@
 # Project Name 📘
+![Beta Version](https://img.shields.io/badge/version-beta-yellow)
+![GitHub last commit](https://img.shields.io/github/last-commit/Minty-cyber/LC)
+![GitHub issues](https://img.shields.io/github/issues/Minty-cyber/LC)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/Minty-cyber/LC)
 
-Brief description of your project.
+> **Note:** This project is currently in beta. Future versions will include more features and improvements.
 
 ## Table of Contents 📑
 
