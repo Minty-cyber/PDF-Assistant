@@ -25,7 +25,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-file_processed = False  # Global variable to track file processing state
+file_processed = False
 
 
 class QuestionRequest(BaseModel):
@@ -86,7 +86,7 @@ async def upload_files(files: list[UploadFile] = File(...)):
     for file in pdf_docs:
         os.remove(file)
 
-    file_processed = True  # Set the global flag to indicate files are processed
+    file_processed = True 
     return {"message": "Files processed successfully"}
 
 
