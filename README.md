@@ -17,9 +17,9 @@
 - [Contributing](#contributing)
 - [License](#license)
 
-## 📖 Introduction
+## Introduction
 
-A brief introduction to your project, what it does, and why it exists.
+📖 A brief introduction to your project, what it does, and why it exists.
 
 ## Features ✨
 
