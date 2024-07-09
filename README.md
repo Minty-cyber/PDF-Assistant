@@ -1,4 +1,5 @@
-# Project Name 📘
+# PDF Question and Answer System 🤖📓🌐
+
 ![Beta Version](https://img.shields.io/badge/version-beta-yellow)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Minty-cyber/LC)
 ![GitHub issues](https://img.shields.io/github/issues/Minty-cyber/LC)
@@ -19,21 +20,24 @@
 
 ## Introduction
 
-📖 A brief introduction to your project, what it does, and why it exists.
+ 📖 **PDF QnA** is a project designed to enhance learners' productivity and efficiency. It allows users to upload a PDF document and generate questions based on its content. Users can then interact with the system to get accurate answers to these questions, aiding in better comprehension and retention.
 
-## Features ✨
+## Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- ✨**PDF Upload:** Upload PDF documents for processing
+- ✨**Question Submission:** Type questions based on the uploaded PDF.
+- ✨**Answer Retrieval:** Provide accurate answers to typed questions.
+- ✨**User Interaction:** Easy-to-use interface for interacting with generated questions and answers.
+
+
+By leveraging **PDF QnA**, users can streamline their learning process by focusing on key concepts and testing their understanding directly from PDF materials.
+
 
 ## Technologies Used 🛠️
 
-- **LangChain**: Used for language processing and AI/ML tasks.
-- **FastAPI**: Backend framework for building APIs.
+- **LangChain**: Used for language processing and AI/ML tasks by handling the user and pdf interactions.
+- **FastAPI**: Backend framework for building APIs. Used for making the routes of uploading and asking questions
 - **React Vite**: Frontend framework for building user interfaces.
-
-## Installation 💻
 
 ### Prerequisites 📋
 
