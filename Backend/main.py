@@ -41,6 +41,15 @@ def get_pdf_text(pdf_docs):
     return text
 
 
+    """
+    The code defines functions to split text into chunks, generate embeddings, and create a
+    conversational chain for answering questions based on context.
+    
+    :param text: The `text` parameter is the input text that will be processed and split into chunks for
+    further analysis
+    :return: The code provided defines three functions: `get_text_chunks`, `get_vector_store`, and
+    `get_conversational_chain`.
+    """
 def get_text_chunks(text):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=1000)
     chunks = text_splitter.split_text(text)
