@@ -1,5 +1,4 @@
 
-
 https://github.com/user-attachments/assets/fbf8e8dd-47f3-40dc-844d-d3d63b98d970
 
 # PDF Assistant🤖📓🌐
@@ -9,7 +8,7 @@ https://github.com/user-attachments/assets/fbf8e8dd-47f3-40dc-844d-d3d63b98d970
 ![GitHub issues](https://img.shields.io/github/issues/Minty-cyber/LC)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Minty-cyber/LC)
 
-> **Note:** This project is currently in beta. Future versions will include more features and improvements.
+> **Note:** This project is currently in beta. Future versions will include more features and improvements. STAY TUNED!
 
 
 ## Introduction 🚀
@@ -63,6 +62,44 @@ By leveraging **PDF Assistant**, users can streamline their learning process by 
    ```bash
    http://localhost:8000/docs
 
+## Gemini API KEY 🔑
+
+To use the PDF Assistant effectively, you will need to configure the Gemini API Key for accessing Google Generative AI services. Follow these steps to set it up:
+
+1. **Obtain API Key**:
+   - Visit the [Google Cloud Console](https://console.cloud.google.com/).
+   - Create a new project or select an existing project.
+   - Navigate to the "APIs & Services" section.
+   - Enable the "Google Generative AI" API.
+   - Generate a new API key and note it down.
+
+2. **Set Environment Variable**:
+   - Create a `.env` file in the root directory of your project.
+   - Add your API key to the `.env` file as follows:
+     ```dotenv
+     GOOGLE_API_KEY=your_api_key_here
+     ```
+   - Make sure to replace `your_api_key_here` with the actual API key you obtained from Google Cloud Console.
+
+3. **Load Environment Variables**:
+   - Ensure your FastAPI application is configured to load the environment variables from the `.env` file. This is typically done using the `dotenv` package in Python:
+     ```python
+     from dotenv import load_dotenv
+     import os
+
+     load_dotenv()
+     genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+     ```
+
+4. **Security Considerations**:
+   - Never hard-code your API keys directly in your source code.
+   - Avoid sharing your API keys in public repositories.
+   - Rotate your API keys regularly and manage their permissions carefully.
+
+By following these steps, you can securely configure and use the Gemini API key with the PDF Assistant to 
+leverage the powerful language processing capabilities of Google Generative AI.
+
+
 ### API endpoints with Postman snapshots
 <p align="center">
       <img src="Backend/Images/Screenshot (288).png" width="400" height="250">
@@ -73,12 +110,12 @@ By leveraging **PDF Assistant**, users can streamline their learning process by 
 
 1. **Navigate to the frontend directory**:
 
-   ```bash
+   ```python
    cd Frontend/visuals
 
 2. **Install Node.js dependencies**:
 
-   ```bash
+   ```python
    npm install
    npm install axios
    npm install vite
@@ -86,13 +123,13 @@ By leveraging **PDF Assistant**, users can streamline their learning process by 
 3. **Start the development server**:
    This command will start the React Vite development server.
       
-   ```bash
+   ```python
    npm run dev
 
 4. **Access the application**:
    Open your browser and go to:
 
-    ```bash
+    ```python
    http://localhost:3000
 
 ## Contributions 🤝
