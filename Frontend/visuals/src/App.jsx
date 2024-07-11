@@ -30,6 +30,7 @@ function App() {
       setMessage("Files uploaded and processed successfully!");
       setUploaded(true);
     } catch (error) {
+      console.log(error)
       setMessage("Failed to upload files. Please try again.");
       setUploaded(false);
     } finally {
@@ -79,7 +80,7 @@ function App() {
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Sidebar */}
       <aside className="w-full md:w-1/4 bg-gray-800 text-gray-100 p-4">
-        <h1 className="text-2xl font-bold mt-4 mb-4">PDF QA System</h1>
+        <h1 className="text-2xl font-bold mt-4 mb-4">PDF Assistant</h1>
         <div className="relative mb-4">
           <input
             type="file"
@@ -119,7 +120,7 @@ function App() {
       <main className="flex-1 p-4 md:p-8">
         <div className="mb-4">
           <h1 className="mb-6 text-center font-sans font-bold text-3xl">
-            PDF QnA System
+            PDF Assistant
           </h1>
           <input
             type="text"
