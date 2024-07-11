@@ -80,6 +80,7 @@ By leveraging **PDF Assistant**, users can streamline their learning process by 
 
    ```bash
    npm install
+   npm install axios
    npm install vite
 
 3. **Start the development server**:
@@ -94,4 +95,5 @@ By leveraging **PDF Assistant**, users can streamline their learning process by 
     ```bash
    http://localhost:3000
 
-   
+## Contributions 🤝
+Contributions are welcome! Please follow the [contribution guidelines](https://github.com/Minty-cyber/PDF-Assistant/blob/main/CONTRIBUTIONS.md) to get started.
